@@ -43,8 +43,6 @@ const CartProvider: React.FC = ({ children }) => {
 
   const addToCart = useCallback(
     async (product: Product) => {
-      // TODO ADD A NEW ITEM TO THE CART
-
       const prodExists = products.find(prod => prod.id === product.id);
 
       if (prodExists) {
@@ -68,7 +66,6 @@ const CartProvider: React.FC = ({ children }) => {
 
   const increment = useCallback(
     async id => {
-      // TODO INCREMENTS A PRODUCT QUANTITY IN THE CART
       setProducts(
         products.map(prod =>
           prod.id === id ? { ...prod, quantity: prod.quantity + 1 } : prod,
@@ -85,9 +82,9 @@ const CartProvider: React.FC = ({ children }) => {
 
   const decrement = useCallback(
     async id => {
-      // TODO DECREMENTS A PRODUCT QUANTITY IN THE CART
       const prodFiltered = products.filter(prod => prod.id === id);
       const qty = prodFiltered[0].quantity;
+      // Se a quantidade for = 1, entao deleta do carrinho
       if (qty > 1) {
         setProducts(
           products.map(prod =>
